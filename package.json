@@ -1,0 +1,20 @@
+{
+  "name": "sniperjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.5",
+    "cli-select": "^1.1.2",
+    "moment": "^2.29.1",
+    "readline-sync": "^1.4.10"
+  }
+}

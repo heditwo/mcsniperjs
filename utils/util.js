@@ -1,0 +1,86 @@
+const chalk = require('chalk')
+const readlineSync = require('readline-sync')
+const fs = require('fs')
+const logger = require('./logger')
+const http = require('./http')
+const cliSelect = require('cli-select')
+
+
+const prompt = (msg, args) => {
+    return readlineSync.question(chalk.green("? ") + msg, args);
+}
+
+const selectYN = async (msg) => {
+    console.log(chalk.green("? ")+msg)
+    const choice = await cliSelect({
+        selected: chalk.blue.bold('>'),
+        unselected: ' ',
+        values: ['No', 'Yes'],
+        valueRenderer: (value, selected) => {
+            if (selected) {
+                return chalk.blue.bold(value);
+            }
+  
+            return value;
+        },
+  
+    }).catch(() => {
+      process.exit();
+    });
+  
+    console.log("> "+choice.value)
+    return choice.id
+  }
+
+  const select = async (msg, choices) => {
+    console.log(chalk.green("? ")+msg)
+    const choice = await cliSelect({
+        selected: chalk.blue.bold('>'),
+        unselected: ' ',
+        values: choices,
+        valueRenderer: (value, selected) => {
+            if (selected) {
+                return chalk.blue.bold(value);
+            }
+  
+            return value;
+        },
+  
+    }).catch(() => {
+      process.exit();
+    });
+    console.log("> "+choice.value);
+    return choice.value
+  }
+
+  const convertTime = (time) => {
+    const times = [1000, 60000, 3600000, 86400000];
+    const units = ["s", "min", "hr", "days"];
+    let arr = [time, "ms"];
+    for(const i in times) if(time > times[i]) arr = [Math.floor(time/times[i]), units[i]];
+    return arr;
+  }
+
+
+
+  const loadAccountsFile = async () => {
+    try {
+      let data = fs.readFileSync('./accounts.txt', 'utf8')
+      return data.toString()
+    } catch(e) {
+      logger.error(e.stack)
+    }
+
+  }
+
+  const loadAccounts = () => {
+    accounts = []
+  }
+
+
+  module.exports = {
+      convertTime,
+      prompt,
+      select,
+      selectYN
+  }
