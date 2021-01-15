@@ -25,7 +25,7 @@ const authenticate = async (email, password) => {
       }
   }).catch(error => {
     console.log(error.response.data)
-    process.exit()
+    return
   })
 
   if (req.status != 200) logger.error(`Could not authenticate: ${email}`);
