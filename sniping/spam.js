@@ -28,7 +28,7 @@ const sniper = (name) => {
     for (let i=0; i<3; i++) snipe(name) //only allowed 3 requests before being rate limited
 }
 
-const preSnipe = async (reauth, authentication, config) => {
+const preSnipe = async (reauth, config) => {
     logger.info("Preparing to snipe in 30 seconds")
     if (reauth) {
         logger.warn("Token expired, attempting to reauthenticate")

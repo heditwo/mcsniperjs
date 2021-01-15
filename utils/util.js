@@ -4,6 +4,8 @@ const fs = require('fs')
 const logger = require('./logger')
 const http = require('./http')
 const cliSelect = require('cli-select')
+const readline = require('readline')
+const Account = require('../class/Account')
 
 
 const prompt = (msg, args) => {
@@ -63,24 +65,43 @@ const selectYN = async (msg) => {
 
 
 
-  const loadAccountsFile = async () => {
-    try {
-      let data = fs.readFileSync('./accounts.txt', 'utf8')
-      return data.toString()
-    } catch(e) {
-      logger.error(e.stack)
-    }
-
-  }
-
-  const loadAccounts = () => {
+  const loadAccountsFromFile = async () => {
     accounts = []
+    const fileStream = fs.createReadStream('./accounts.txt')
+    const rl = readline.createInterface({
+      input: fileStream,
+      crlfDelay: Infinity
+    })
+
+    for await (const line of rl) {
+        const account = line.trim().split(':')
+        if (account.length >= 5) {
+          account = new Account(
+            account[0],
+            account[1],
+            [account[2], account[3], account[4]]
+          )
+          accounts.push(account)
+        }
+
+        if (account.length == 2) {
+          account = new Account(
+            account[0],
+            account[1]
+          )
+          accounts.push(account)
+        }
+    }
+    return accounts
   }
+
+  
 
 
   module.exports = {
       convertTime,
       prompt,
       select,
-      selectYN
+      selectYN,
+      loadAccountsFromFile
   }
