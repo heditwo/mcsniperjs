@@ -1,10 +1,7 @@
 const util = require('./utils/util');
-const auth = require('./utils/auth');
-const conf = require('./utils/configuration');
 const http = require('./utils/http');
 const logger = require('./utils/logger');
 const moment = require('moment')
-const Account = require('./class/Account')
 const sniper = require('./sniping/spam')
 
 const init = async () => {

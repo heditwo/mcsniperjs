@@ -1,5 +1,4 @@
 const logger = require('../utils/logger')
-const auth = require('../utils/auth')
 const http = require('../utils/http')
 const axios = require('axios')
 const chalk = require('chalk')
