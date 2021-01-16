@@ -30,11 +30,11 @@ const sniper = () => {
     for (let i = 0; i < 3; i++) snipe() //only allowed 3 requests before being rate limited
 }
 
-const preSnipe = async (reauth, config) => {
+const preSnipe = async (reauth, delay, account) => {
     logger.info("Preparing to snipe in 30 seconds")
     if (reauth) {
         logger.warn("Token expired, attempting to reauthenticate")
-        authentication = await auth.init(config)
+        authentication = await account.initialize()
     }
     token = "Bearer " + authentication.token
 
@@ -43,19 +43,17 @@ const preSnipe = async (reauth, config) => {
         const latency = await http.ping()
         if (latency > max) max = latency
     }
-    logger.info(`Latency is ${max} ms. Using ${config.delay} ms delay.`)
+    logger.info(`Latency is ${max} ms. Using ${delay} ms delay.`)
 
-    setTimeout(sniper, (snipeTime - new Date() - max - config.delay))
+    setTimeout(sniper, (snipeTime - new Date() - max - delay))
 }
-//this doesn't work right now
-const setup = (account, time) => {
-    config.keys().forEach(key => {
-        profile = config[key]
-        profile.target = config.target
-        snipeTime = time
-        name = config.target
-        setTimeout(preSnipe, (snipeTime - new Date() - 30000), reauth, authentication, profile)
-    })
+
+const setup = (account, time, target, reauth, delay) => {
+    auth = account.auth
+    snipeTime = time
+    name = target
+    setTimeout(preSnipe, (snipeTime - new Date() - 30000), reauth, auth, delay)
+    
 }
 
 module.exports = {

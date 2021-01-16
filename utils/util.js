@@ -74,13 +74,14 @@ const selectYN = async (msg) => {
     })
 
     for await (const line of rl) {
-        const account = line.trim().split(':')
+        let account = line.trim().split(':')
         if (account.length >= 5) {
           account = new Account(
             account[0],
             account[1],
             [account[2], account[3], account[4]]
           )
+          logger.info(`${account.email} added to accounts, has security questions stored.`)
           accounts.push(account)
         }
 
@@ -89,6 +90,7 @@ const selectYN = async (msg) => {
             account[0],
             account[1]
           )
+          logger.info(`${account.email} added to accounts`)
           accounts.push(account)
         }
     }
