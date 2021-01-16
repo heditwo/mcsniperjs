@@ -12,7 +12,7 @@ const init = async () => {
     let workingAccounts = []
 
     const target = util.prompt('Target: ')
-    const delay = util.prompt('Delay: ')
+    const snipeDelay = util.prompt('Delay: ')
 
     for (let i = 0; i < accounts.length; i++) {
         try {
@@ -32,7 +32,7 @@ const init = async () => {
     if ((snipeTime - workingAccounts[0].authTime) > 50000) reauth = true
 
     for (let i = 0; i < workingAccounts.length; i++) {
-        sniper.setup(workingAccounts[i], snipeTime, target, reauth, delay)
+        sniper.setup(workingAccounts[i], snipeTime, target, reauth, snipeDelay)
     }
 }
 
