@@ -66,7 +66,7 @@ class Account {
     
             const answerPost = await axios.post(
                 "https://api.mojang.com/user/security/location",
-                answer,
+                answers,
                 {headers: {
                     "Authorization": `Bearer ${token}`
                   }}
