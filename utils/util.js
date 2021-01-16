@@ -96,6 +96,11 @@ const selectYN = async (msg) => {
     return accounts
   }
 
+  const sleep = (ms) => { // this is very, extremely dumb
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms)
+    })
+  }
   
 
 
@@ -104,5 +109,6 @@ const selectYN = async (msg) => {
       prompt,
       select,
       selectYN,
-      loadAccountsFromFile
+      loadAccountsFromFile,
+      sleep
   }

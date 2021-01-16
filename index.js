@@ -17,6 +17,7 @@ const init = async () => {
     for (let i = 0; i < accounts.length; i++) {
         try {
             await accounts[i].initialize()
+            await util.sleep(800) // as much as i'd love to not have a hard coded sleep, i will get rate limited
         }
         catch(e) {
             console.info(`${accounts[i].email} authentication failed!`)
@@ -28,11 +29,9 @@ const init = async () => {
     const converted = util.convertTime(snipeTime.getTime() - new Date())
     const timestamp = moment.unix(snipeTime.getTime() / 1000)
     logger.info(`${target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
-    let reauth = false
-    if ((snipeTime - workingAccounts[0].authTime) > 50000) reauth = true
 
     for (let i = 0; i < workingAccounts.length; i++) {
-        sniper.setup(workingAccounts[i], snipeTime, target, reauth, snipeDelay)
+        sniper.setup(workingAccounts[i], snipeTime, target, snipeDelay)
     }
 }
 

@@ -31,10 +31,7 @@ const sniper = () => {
 
 const preSnipe = async (reauth, delay, account) => {
     logger.info("Preparing to snipe in 30 seconds")
-    if (reauth) {
-        logger.warn("Token expired, attempting to reauthenticate")
-        authentication = await account.initialize()
-    }
+    
     token = "Bearer " + authentication.auth.token
 
     let max = 0
@@ -47,11 +44,11 @@ const preSnipe = async (reauth, delay, account) => {
     setTimeout(sniper, (snipeTime - new Date() - max - delay))
 }
 
-const setup = (account, time, target, reauth, delay) => {
+const setup = (account, time, target, delay) => {
     let auth = account.auth
     snipeTime = time
     name = target
-    setTimeout(preSnipe, (snipeTime - new Date() - 30000), reauth, auth, delay)
+    setTimeout(preSnipe, (snipeTime - new Date() - 30000), auth, delay)
     
 }
 
