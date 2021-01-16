@@ -36,7 +36,7 @@ const preSnipe = async (reauth, delay, account) => {
         logger.warn("Token expired, attempting to reauthenticate")
         authentication = await account.initialize()
     }
-    token = "Bearer " + authentication.token
+    token = "Bearer " + authentication.auth.token
 
     let max = 0
     for (let i = 0; i < 3; i++) {
@@ -49,7 +49,7 @@ const preSnipe = async (reauth, delay, account) => {
 }
 
 const setup = (account, time, target, reauth, delay) => {
-    auth = account.auth
+    let auth = account.auth
     snipeTime = time
     name = target
     setTimeout(preSnipe, (snipeTime - new Date() - 30000), reauth, auth, delay)

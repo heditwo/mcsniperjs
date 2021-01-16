@@ -5,6 +5,7 @@ const http = require('./utils/http');
 const logger = require('./utils/logger');
 const moment = require('moment')
 const Account = require('./class/Account')
+const sniper = require('./sniping/spam')
 
 const init = async () => {
     logger.info('MCsniperJS - based on SnipeJS, rewritten and \'improved\' by hedi#7777.')
@@ -13,6 +14,8 @@ const init = async () => {
     // TODO: make this work
     const accounts = await util.loadAccountsFromFile()
     let workingAccounts = []
+
+    const target = util.prompt('Target: ')
 
     for (let i = 0; i < accounts.length; i++) {
         try {
@@ -24,20 +27,16 @@ const init = async () => {
         workingAccounts.push(accounts[i])
     }
 
-
-    const target = util.prompt('Target: ')
-
-    const snipeTime = await http.getAvailableTime(config.target)
+    const snipeTime = await http.getAvailableTime(target)
     const converted = util.convertTime(snipeTime.getTime() - new Date())
     const timestamp = moment.unix(snipeTime.getTime() / 1000)
-    logger.info(`${config.target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
+    logger.info(`${target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
+    let reauth = false
+    if ((snipeTime - workingAccounts[0].authTime) > 50000) reauth = true
 
-    // let reauth = false
-
-    // if ((snipeTime - authentication.authTime) > 50000) reauth = true
-
-    // const sniper = require('./sniping/spam')
-    // sniper.setup(snipeTime, config, authentication, reauth)
+    for (let i = 0; i < workingAccounts.length; i++) {
+        sniper.setup(workingAccounts[i], snipeTime, target, reauth, delay)
+    }
 }
 
 init()
