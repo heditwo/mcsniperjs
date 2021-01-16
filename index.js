@@ -8,11 +8,11 @@ const init = async () => {
     logger.info('MCsniperJS - based on SnipeJS, rewritten and \'improved\' by hedi#7777.')
     const delay = await http.getTime() - new Date()
     if (Math.abs(delay) > 30) logger.warn(`Clock is out of sync (${delay} ms)`);
-    // TODO: make this work
     const accounts = await util.loadAccountsFromFile()
     let workingAccounts = []
 
     const target = util.prompt('Target: ')
+    const delay = util.prompt('Delay: ')
 
     for (let i = 0; i < accounts.length; i++) {
         try {
