@@ -4,10 +4,8 @@ const logger = require('./logger')
 
 const ping = async () => {
     const before = new Date()
-    const req = await axios.get("https://api.mojang.com/")
+    const req = await axios.put("https://api.minecraftservices.com/minecraft", null, { validateStatus: false })
     const after = new Date()
-
-    if(req.status != 200) return null
 
     return (after-before)
 }

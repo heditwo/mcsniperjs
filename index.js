@@ -12,6 +12,7 @@ const init = async () => {
     // TODO: make this work
     let config = await conf.init()
     const authentication = await auth.init(config)
+    
 
     console.log()
     config.target = util.prompt('Please input target: ')

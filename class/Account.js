@@ -8,7 +8,7 @@ class Account {
         this.password = password
         this.securityQuestions = securityQuestions
     }
-    
+
     async initialize() {
         this.auth = await this.authenticate(this.email, this.password)
         this.chal = await this.challenges(this.auth.token, this.securityQuestions, this.email)
@@ -28,6 +28,14 @@ class Account {
           console.log(error.response.data)
           process.exit()
         })
+
+        if (req.status != 200) logger.error(`Could not authenticate: ${email}`);
+
+        const res = {token: req.data.accessToken, name: req.data.selectedProfile.name, id: req.data.selectedProfile.id, authTime: new Date()}
+      
+        logger.info(`Succesfully authenticated ${res.name}.`);
+      
+        return res;
     }
 
     async challenges(token, securityQuestions, email) {
@@ -71,13 +79,15 @@ class Account {
     
     async validate(token) {
         const bearerPayload = {
-            accessToken: `Bearer ${token}`
+            accessToken: token
         }
         const req = await axios.post("https://authserver.mojang.com/validate", bearerPayload, {
             headers: {
                 "Content-Type": "application/json"
             }
-        });
+        }).catch(error => {
+            console.log(error)
+        })
         if (req.status != 204) return logger.error(`Could not validate.`);
         return true;
     }

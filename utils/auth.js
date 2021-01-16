@@ -24,7 +24,7 @@ const authenticate = async (email, password) => {
           "Content-Type": "application/json"
       }
   }).catch(error => {
-    console.log(error.response.data)
+    logger.error(error.response.data)
     return
   })
 

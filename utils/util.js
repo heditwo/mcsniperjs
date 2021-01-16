@@ -66,7 +66,7 @@ const selectYN = async (msg) => {
 
 
   const loadAccountsFromFile = async () => {
-    accounts = []
+    let accounts = []
     const fileStream = fs.createReadStream('./accounts.txt')
     const rl = readline.createInterface({
       input: fileStream,

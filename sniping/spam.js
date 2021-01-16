@@ -25,9 +25,9 @@ const snipe = () => {
     })
 }
 
-const sniper = (name) => {
+const sniper = () => {
     logger.info("Attempting to snipe")
-    for (let i = 0; i < 3; i++) snipe(name) //only allowed 3 requests before being rate limited
+    for (let i = 0; i < 3; i++) snipe() //only allowed 3 requests before being rate limited
 }
 
 const preSnipe = async (reauth, config) => {
@@ -47,8 +47,8 @@ const preSnipe = async (reauth, config) => {
 
     setTimeout(sniper, (snipeTime - new Date() - max - config.delay))
 }
-
-const setup = (time, config, authentication, reauth) => {
+//this doesn't work right now
+const setup = (account, time) => {
     config.keys().forEach(key => {
         profile = config[key]
         profile.target = config.target
