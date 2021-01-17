@@ -101,6 +101,10 @@ const selectYN = async (msg) => {
       setTimeout(resolve, ms)
     })
   }
+
+  const printTitle = () => {
+    console.log(fs.readFileSync('./title.txt').toString())
+  }
   
 
 
@@ -110,5 +114,6 @@ const selectYN = async (msg) => {
       select,
       selectYN,
       loadAccountsFromFile,
-      sleep
+      sleep,
+      printTitle
   }

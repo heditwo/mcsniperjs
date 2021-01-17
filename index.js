@@ -5,8 +5,10 @@ const moment = require('moment')
 const sniper = require('./sniping/spam')
 
 const init = async () => {
+    util.printTitle()
     logger.info('MCsniperJS - based on SnipeJS, rewritten and \'improved\' by hedi#7777.')
     const delay = await http.getTime() - new Date()
+    const latency = await http.ping()
     if (Math.abs(delay) > 30) logger.warn(`Clock is out of sync (${delay} ms)`);
     const accounts = await util.loadAccountsFromFile()
     let workingAccounts = []
@@ -30,7 +32,7 @@ const init = async () => {
     logger.info(`${target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
 
     for (let i = 0; i < workingAccounts.length; i++) {
-        sniper.setup(workingAccounts[i], snipeTime, target, snipeDelay)
+        sniper.setup(workingAccounts[i], snipeTime, target, snipeDelay, latency)
     }
 }
 
