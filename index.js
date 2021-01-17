@@ -17,7 +17,7 @@ const init = async () => {
     for (let i = 0; i < accounts.length; i++) {
         try {
             await accounts[i].initialize()
-            await util.sleep(800) // as much as i'd love to not have a hard coded sleep, i will get rate limited
+            await util.sleep(850) // as much as i'd love to not have a hard coded sleep, i will get rate limited
         }
         catch(e) {
             console.info(`${accounts[i].email} authentication failed!`)

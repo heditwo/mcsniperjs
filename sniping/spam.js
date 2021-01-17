@@ -29,10 +29,10 @@ const sniper = () => {
     for (let i = 0; i < 3; i++) snipe() //only allowed 3 requests before being rate limited
 }
 
-const preSnipe = async (reauth, delay, account) => {
+const preSnipe = async (delay, auth) => {
     logger.info("Preparing to snipe in 30 seconds")
     
-    token = "Bearer " + authentication.auth.token
+    token = "Bearer " + auth.token
 
     let max = 0
     for (let i = 0; i < 3; i++) {
@@ -48,7 +48,7 @@ const setup = (account, time, target, delay) => {
     let auth = account.auth
     snipeTime = time
     name = target
-    setTimeout(preSnipe, (snipeTime - new Date() - 30000), auth, delay)
+    setTimeout(preSnipe, (snipeTime - new Date() - 30000), delay, auth)
     
 }
 
