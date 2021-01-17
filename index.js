@@ -10,7 +10,6 @@ const init = async () => {
     if (Math.abs(delay) > 30) logger.warn(`Clock is out of sync (${delay} ms)`);
     const accounts = await util.loadAccountsFromFile()
     let workingAccounts = []
-
     const target = util.prompt('Target: ')
     const snipeDelay = util.prompt('Delay: ')
 

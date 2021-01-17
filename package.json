@@ -15,6 +15,7 @@
     "cheerio": "^1.0.0-rc.5",
     "cli-select": "^1.1.2",
     "moment": "^2.29.1",
+    "ping": "^0.4.0",
     "readline-sync": "^1.4.10"
   }
 }
