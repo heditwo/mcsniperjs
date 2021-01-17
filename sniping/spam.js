@@ -24,12 +24,12 @@ const snipe = () => {
     })
 }
 
-const sniper = () => {
-    logger.info("Attempting to snipe")
+const sniper = (email) => {
+    logger.info(`Attempting to snipe on ${email}`)
     for (let i = 0; i < 3; i++) snipe() //only allowed 3 requests before being rate limited
 }
 
-const preSnipe = async (delay, auth) => {
+const preSnipe = async (delay, auth, email) => {
     logger.info("Preparing to snipe in 30 seconds")
     
     token = "Bearer " + auth.token
@@ -41,14 +41,15 @@ const preSnipe = async (delay, auth) => {
     }
     logger.info(`Latency is ${max} ms. Using ${delay} ms delay.`)
 
-    setTimeout(sniper, (snipeTime - new Date() - max - delay))
+    setTimeout(sniper, (snipeTime - new Date() - max - delay), email)
 }
 
 const setup = (account, time, target, delay) => {
     let auth = account.auth
+    let email = account.email
     snipeTime = time
     name = target
-    setTimeout(preSnipe, (snipeTime - new Date() - 30000), delay, auth)
+    setTimeout(preSnipe, (snipeTime - new Date() - 30000), delay, auth, email)
     
 }
 
