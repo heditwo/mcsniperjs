@@ -33,10 +33,10 @@ const preSnipe = async (delay, auth, email, latency) => {
     logger.info("Preparing to snipe in 30 seconds")
     
     token = "Bearer " + auth.token
-    
+
     logger.info(`Latency is ${latency} ms. Using ${delay} ms delay.`)
 
-    setTimeout(sniper, (snipeTime - new Date() - max - delay), email)
+    setTimeout(sniper, (snipeTime - new Date() - latency - delay), email)
 }
 
 const setup = (account, time, target, delay, latency) => {
