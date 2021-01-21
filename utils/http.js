@@ -28,9 +28,9 @@ const getAvailableTime = async (name) => {
 }
 
   const getTime = async () => {
-    const req = await axios.get("https://worldtimeapi.org/api/ip")
-  
-    if(req.status != 200) logger.warn("Could not connect to World Time API.")
+    const req = await axios.get("https://worldtimeapi.org/api/ip").catch(error => {
+      logger.error(`Could not connect to the World Time API, restart the program. @ ${error.response.status}`)
+    })
   
     return (new Date(req.data.datetime))
   }
