@@ -9,6 +9,7 @@ const init = async () => {
     logger.info('MCsniperJS - based on SnipeJS, rewritten and \'improved\' by hedi#7777.')
     const delay = await http.getTime() - new Date()
     const latency = await http.ping()
+    logger.info(`Ping is currently ${latency} ms.`)
     if (Math.abs(delay) > 30) logger.warn(`Clock is out of sync (${delay} ms)`);
     const accounts = await util.loadAccountsFromFile()
     let workingAccounts = []
