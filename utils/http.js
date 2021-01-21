@@ -9,7 +9,7 @@ const ping = async () => {
 
   for (let i = 0; i < 5; i++) pings.push(await pinger.promise.probe('dynamodb.us-east-1.amazonaws.com'))
 
-  return pings.map(s => parseInt(s.min)).reduce((a,b) => a+b) / pings.length
+  return Math.round(pings.map(s => parseInt(s.min)).reduce((a,b) => a+b) / pings.length)
 }
 
 

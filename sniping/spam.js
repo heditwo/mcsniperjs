@@ -5,7 +5,7 @@ const chalk = require('chalk')
 
 let snipeTime, name, token
 
-const snipe = () => {
+const snipe = (email) => {
     axios.put(
         `https://api.minecraftservices.com/minecraft/profile/name/${name}`,
         null,
@@ -17,16 +17,16 @@ const snipe = () => {
             }
         }
     ).then(function (response) {
-        logger.info(`${chalk.green('SUCCESS')} @ ${response.status}`)
+        logger.info(`${chalk.green('SUCCESS')} @ ${response.status} on ${email}`)
         process.exit()
     }).catch(function (error) {
-        logger.warn(`${chalk.red('FAIL')} @ ${error.response.status}`)
+        logger.warn(`${chalk.red('FAIL')} @ ${error.response.status} on ${email}`)
     })
 }
 
 const sniper = (email) => {
     logger.info(`Attempting to snipe on ${email}`)
-    for (let i = 0; i < 3; i++) snipe() //only allowed 3 requests before being rate limited
+    for (let i = 0; i < 3; i++) snipe(email) //only allowed 3 requests before being rate limited
 }
 
 const preSnipe = async (delay, auth, email, latency) => {
@@ -34,7 +34,7 @@ const preSnipe = async (delay, auth, email, latency) => {
     
     token = "Bearer " + auth.token
 
-    logger.info(`Latency is ${latency} ms. Using ${delay} ms delay.`)
+    logger.info(`Latency is ${latency} ms. Using ${delay} ms delay. @ ${email}`)
 
     setTimeout(sniper, (snipeTime - new Date() - latency - delay), email)
 }

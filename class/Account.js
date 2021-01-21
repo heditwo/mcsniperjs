@@ -11,6 +11,7 @@ class Account {
 
     async initialize() {
         this.auth = await this.authenticate(this.email, this.password)
+        await util.sleep(800) //another hard coded sleep zzzz
         this.chal = await this.challenges(this.auth.token, this.securityQuestions, this.email)
     }
 
