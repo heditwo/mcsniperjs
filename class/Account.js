@@ -20,7 +20,6 @@ class Account {
         }
         const req = await axios.post("https://authserver.mojang.com/authenticate", json, {
             headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36",
                 "Content-Type": "application/json"
             }
         }).catch(error => {

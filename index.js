@@ -2,7 +2,7 @@ const util = require('./utils/util');
 const http = require('./utils/http');
 const logger = require('./utils/logger');
 const moment = require('moment')
-const sniper = require('./sniping/spam')
+const sniper = require('./sniping/sniper')
 
 const init = async () => {
     util.printTitle()
@@ -32,8 +32,9 @@ const init = async () => {
     const timestamp = moment.unix(snipeTime.getTime() / 1000)
     logger.info(`${target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
 
+    logger.info(`Latency is ${latency} ms. Using ${snipeDelay} ms delay.`)
     for (let i = 0; i < workingAccounts.length; i++) {
-        sniper.setup(workingAccounts[i], snipeTime, target, snipeDelay, latency)
+        sniper.setup(workingAccounts[i], target, snipeTime, snipeDelay, latency)
     }
 }
 
