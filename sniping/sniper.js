@@ -20,9 +20,9 @@ const changeName = (account, name) => {
 
 const sniper = (account, name) => {
     for (let i = 0; i < 3; i++) changeName(account, name)
-}
-
-const setup = (account, name, time, delay, latency) => {
+} 
+ 
+const setup = (account, name, time, delay, latency) => { 
     logger.info(`${account.email} ready to snipe.`)
     setTimeout(sniper, (time - new Date() - latency - delay), account, name)
 }
