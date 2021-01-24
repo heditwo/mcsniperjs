@@ -13,10 +13,21 @@ const error = (msg) => {
     process.exit()
 }
 
+const fail = (msg) => {
+    console.log(chalk.keyword('orange')(`[${new Date().toISOString()}]`) + chalk.red(' [FAIL]: ') + msg)
+}
+
+const success = (msg) => {
+    console.log(chalk.keyword('orange')(`[${new Date().toISOString()}]`) + chalk.red(' [SUCCESS]: ') + msg)
+    process.exit()
+}
+
 
 
 module.exports = {
     info,
     warn,
-    error
+    error,
+    fail,
+    success
 }

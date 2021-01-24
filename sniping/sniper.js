@@ -13,10 +13,9 @@ const changeName = (account, name) => {
         }
     }
     ).then(response => {
-        logger.info(`${chalk.green('SUCCESS')} @ ${response.status} on ${account.email}`)
-        process.exit()
+        logger.success(` @ ${response.status} on ${account.email}`)
     }).catch(error => {
-        logger.warn(`${chalk.red('FAIL')} @ ${error.response.status} on ${account.email}`)
+        logger.fail(` @ ${error.response.status}`)
     })
 }
 
