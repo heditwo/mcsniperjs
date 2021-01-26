@@ -18,7 +18,7 @@ const fail = (msg) => {
 }
 
 const success = (msg) => {
-    console.log(chalk.keyword('orange')(`[${new Date().toISOString()}]`) + chalk.red(' [SUCCESS]: ') + msg)
+    console.log(chalk.keyword('orange')(`[${new Date().toISOString()}]`) + chalk.green(' [SUCCESS]: ') + msg)
     process.exit()
 }
 
