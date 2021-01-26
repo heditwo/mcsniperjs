@@ -69,7 +69,7 @@ class Account {
                     "Authorization": `Bearer ${token}`
                   }}
                   ).catch(error => {
-                    logger.error(`Could not answer challenges. @ ${error.response.status}`)
+                    logger.error(`Could not answer challenges. @ ${error.response.status} ${account.email}`)
                 })
                   
         return
