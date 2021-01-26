@@ -1,3 +1,40 @@
-I'll eventually fix up this readme some more, but this is a sniper that started out as a port of SnipeJS to the new mojang api, and then added a couple more features that I liked from other snipers. 
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/pNjrRq7.png" alt="MCsniperJS"></a>
+</p>
 
-Thank you to anyone I annoyed with questions while writing this :)
+<h3 align="center">MCsniperJS</h3>
+
+<div align="center">
+
+[![Discord](https://img.shields.io/badge/discord/:801854271410274357)](https://discord.gg/gsbJRuM4Aa)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
+
+</div>
+
+---
+
+<p align="center"> Open source NodeJS Minecraft name sniper.
+    <br> 
+</p>
+
+
+
+## 🧐 About <a name = "about"></a>
+
+It's sick! also if anyone wants to make a logo i'll love you a lot :)
+
+## 🏁 Usage <a name = "usage"></a>
+
+git clone the repo
+cd into working dir
+npm install
+supply your own accounts.txt
+npm start
+
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+
+- [SniperJS](https://github.com/Discenz/SnipeJS)
+- [MCsniperPY](https://github.com/MCsniperPY/MCsniperPY)
+- everyone in the MCsniperPY discord who I wouldn't stop bothering ❤️
