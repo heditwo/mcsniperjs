@@ -27,11 +27,11 @@ It's sick! also if anyone wants to make a logo i'll love you a lot :)
 
 ## 🏁 Usage <a name = "usage"></a>
 
-git clone the repo
-cd into working dir
-npm install
-supply your own accounts.txt
-npm start
+git clone the repo  
+cd into working dir  
+npm install  
+supply your own accounts.txt  
+npm start  
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
