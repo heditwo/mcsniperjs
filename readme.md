@@ -7,7 +7,7 @@
 
 <div align="center">
 
-[![Discord](https://img.shields.io/badge/discord/801854271410274357?color=%2370a1d2&label=Discord&logo=discord&logoColor=white)](https://discord.gg/gsbJRuM4Aa)
+[![Discord](https://img.shields.io/discord/801854271410274357?color=%2370a1d2&label=Discord&logo=discord&logoColor=white)](https://discord.gg/gsbJRuM4Aa)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 
