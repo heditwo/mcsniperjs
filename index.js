@@ -23,7 +23,11 @@ const init = async () => {
         catch(e) {
             console.info(`${accounts[i].email} authentication failed!`)
         }
-        workingAccounts.push(accounts[i])
+        
+        if(accounts[i].failedAuth == false) {
+            workingAccounts.push(accounts[i])
+        }
+        
     }
 
     const snipeTime = await http.getAvailableTime(target)

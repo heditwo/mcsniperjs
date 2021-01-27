@@ -7,10 +7,12 @@ class Account {
         this.email = email
         this.password = password
         this.securityQuestions = securityQuestions
+        this.failedAuth = false
     }
 
     async initialize() {
         this.auth = await this.authenticate(this.email, this.password)
+        if (this.failedAuth == true) return
         this.chal = await this.challenges(this.auth.token, this.securityQuestions, this.email)
     }
 
@@ -23,9 +25,10 @@ class Account {
                 "Content-Type": "application/json"
             }
         }).catch(error => {
-          logger.error(`${this.email} failed auth @ ${error.response.status}`)
+          logger.warn(`${this.email} failed auth @ ${error.response.status}`)
+          this.failedAuth = true
         })
-
+        if (this.failedAuth == true) return
         if (req.status != 200) logger.error(`Could not authenticate: ${email} @ ${req.status}`);
 
         const res = {token: req.data.accessToken, name: req.data.selectedProfile.name, id: req.data.selectedProfile.id, authTime: new Date()}
