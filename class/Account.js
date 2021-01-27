@@ -7,7 +7,6 @@ class Account {
         this.email = email
         this.password = password
         this.securityQuestions = securityQuestions
-        this.failedAuth = false
     }
 
     async initialize() {
