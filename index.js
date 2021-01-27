@@ -35,7 +35,7 @@ const init = async () => {
 
     for (let i = 0; i < workingAccounts.length; i++) {
         if (workingAccounts[i].failedAuth) {
-            logger.warn`${workingAccounts[i].email} failed auth and will not snipe.`)
+            logger.warn(`${workingAccounts[i].email} failed auth and will not snipe.`)
             workingAccounts.splice(i, 1)
         }
     }
