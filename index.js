@@ -23,11 +23,7 @@ const init = async () => {
         catch(e) {
             console.info(`${accounts[i].email} authentication failed!`)
         }
-        
-        if (!accounts[i].failedAuth) {
             workingAccounts.push(accounts[i])
-        }
-        
     }
 
     const snipeTime = await http.getAvailableTime(target)
@@ -36,6 +32,12 @@ const init = async () => {
     logger.info(`${target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
 
     logger.info(`Latency is ${latency} ms. Using ${snipeDelay} ms delay.`)
+    for (let i = 0; i < workingAccounts.length; i++) {
+        if (workingAccounts[i].failedAuth) {
+            logger.info(`${workingAccounts[i].email} failed auth and will not snipe.`)
+            workingAccounts.splice(i, 1)
+        }
+    }
     for (let i = 0; i < workingAccounts.length; i++) {
         sniper.setup(workingAccounts[i], target, snipeTime, snipeDelay, latency)
     }
