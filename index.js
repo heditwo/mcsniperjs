@@ -32,6 +32,7 @@ const init = async () => {
     logger.info(`${target} is available in ${converted[0]} ${converted[1]} @ ${timestamp.format("HH:mm:ss")}`)
 
     logger.info(`Latency is ${latency} ms. Using ${snipeDelay} ms delay.`)
+    
     for (let i = 0; i < workingAccounts.length; i++) {
         if (workingAccounts[i].failedAuth) {
             logger.info(`${workingAccounts[i].email} failed auth and will not snipe.`)
