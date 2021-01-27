@@ -24,7 +24,7 @@ const init = async () => {
             console.info(`${accounts[i].email} authentication failed!`)
         }
         
-        if(accounts[i].failedAuth == false) {
+        if (!accounts[i].failedAuth) {
             workingAccounts.push(accounts[i])
         }
         
