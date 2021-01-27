@@ -23,8 +23,7 @@ class Account {
                 "Content-Type": "application/json"
             }
         }).catch(error => {
-          console.log(error.response.data)
-          process.exit()
+          logger.error(`${this.email} failed auth @ ${error.response.status}`)
         })
 
         if (req.status != 200) logger.error(`Could not authenticate: ${email} @ ${req.status}`);
